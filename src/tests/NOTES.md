@@ -5,6 +5,7 @@
 - Installed **Vitest extension** in VS Code.
 - Created shortcut `iv` to expand to `import { describe, expect, it } from 'vitest';`
 - Set up **Vitest UI** to visualize test results.
+- Use itr to import test functions like `describe`, `it`, etc.
 
 ### ✅ 2. Simulating Browser Environment
 
@@ -73,3 +74,35 @@ expect(mockHandler).toHaveBeenCalled();
 - 🔁 Use `describe()` to group related tests.
 - 🧼 Use `beforeEach()` to set up repeatable logic or mocks.
 - 🧰 Use `jest-dom` matchers for **better readability**: `.toBeInTheDocument()`, `.toHaveAttribute()`, etc.
+
+# 🧪 React + Vitest Setup Notes
+
+## ✅ Query Methods in React Testing Library
+
+- You can use various query methods like `getByText`, `getByLabelText`, `getByTestId`, etc.
+- Prefer `getByRole`:
+  - It's more robust and reliable.
+  - Reflects how real users (and screen readers) interact with the UI.
+  - Encourages testing behavior over implementation details.
+
+---
+
+## ⚙️ Vitest Configuration Steps
+
+- In `vitest.config.ts`, set up your test environment:
+  - Enable the `jsdom` environment to simulate browser APIs.
+  - Enable `globals: true` to use global test functions like `describe` and `it` without importing them.
+  - Specify a setup file using `setupFiles`.
+
+```ts
+test: {
+  environment: 'jsdom',
+  globals: true,
+  setupFiles: 'src/tests/setup.ts',
+}
+```
+
+### User interactions
+
+We use fire event to simulate user interactions.
+We do not use fireEvent because it a lightweight wrapper around the native event system. It does not simulate a real world scenario
