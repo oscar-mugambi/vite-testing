@@ -1,8 +1,8 @@
-import SearchBox from '../components/SearchBox';
+import OrderStatusSelector from '../components/OrderStatusSelector';
 
 const PlaygroundPage = () => {
   // return <Onboarding />;
-  return <SearchBox onChange={(text) => console.log(text)} />;
+  return <OrderStatusSelector onChange={(text) => console.log(text)} />;
 };
 
 export default PlaygroundPage;
